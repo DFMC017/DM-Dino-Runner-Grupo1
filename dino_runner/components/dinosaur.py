@@ -17,6 +17,7 @@ class Dinosaur(Sprite):
 
         for i in list_running:
             if  self.step_index < 39:
+                print(i)
                 sleep(0.05)
                 self.image = RUNNING[i]
                 self.dino_rect = self.image.get_rect()
