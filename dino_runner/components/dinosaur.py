@@ -21,3 +21,5 @@ class Dinosaur(Sprite):
 
     def update(self):
         self.run()
+        if self.step_index >= 12:
+            self.step_index = 0
