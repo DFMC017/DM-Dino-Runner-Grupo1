@@ -3,7 +3,6 @@ from utils.constants import RUNNING
 from time import sleep
 
 class Dinosaur(Sprite):
-
     X_POS = 80
     Y_POS = 475
 
