@@ -2,6 +2,8 @@ import pygame
 
 from utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 
+from components.dinosaur import Dinosaur
+
 
 class Game:
     def __init__(self):
@@ -14,6 +16,7 @@ class Game:
         self.game_speed = 20
         self.x_pos_bg = 0
         self.y_pos_bg = 380
+        self.dinosaur = Dinosaur()
 
     def run(self):
         # Game loop: events - update - draw
@@ -30,12 +33,13 @@ class Game:
                 self.playing = False
 
     def update(self):
-        pass
+        self.dinosaur.update()
 
     def draw(self):
         self.clock.tick(FPS)
         self.screen.fill((255, 255, 255))
         self.draw_background()
+        self.dinosaur.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
 
@@ -43,7 +47,8 @@ class Game:
         image_width = BG.get_width()
         self.screen.blit(BG, (self.x_pos_bg, self.y_pos_bg))
         self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
+        
         if self.x_pos_bg <= -image_width:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
-        self.x_pos_bg -= self.game_speed
+            self.x_pos_bg -= self.game_speed
