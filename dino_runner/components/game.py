@@ -1,9 +1,6 @@
 import pygame
-
 from utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
-
 from components.dinosaur import Dinosaur
-
 
 class Game:
     def __init__(self):
