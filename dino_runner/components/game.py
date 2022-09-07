@@ -1,6 +1,7 @@
 import pygame
 from utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
 from components.dinosaur import Dinosaur
+from components.obstacle_manager import ObstacleManager
 
 class Game:
     def __init__(self):
@@ -12,8 +13,9 @@ class Game:
         self.playing = False
         self.game_speed = 20
         self.x_pos_bg = 0
-        self.y_pos_bg = 550
+        self.y_pos_bg = 380
         self.dinosaur = Dinosaur()
+        self.obstacle_manager = ObstacleManager()
 
     def run(self):
         # Game loop: events - update - draw
@@ -30,21 +32,24 @@ class Game:
                 self.playing = False
 
     def update(self):
-        self.dinosaur.update()
+        user_input = pygame.key.get_pressed()
+        self.dinosaur.update(user_input)
+        self.obstacle_manager.update()
 
     def draw(self):
         self.clock.tick(FPS)
         self.screen.fill((255, 255, 255))
         self.draw_background()
         self.dinosaur.draw(self.screen)
+        self.obstacle_manager.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
+       
 
     def draw_background(self):
         image_width = BG.get_width()
         self.screen.blit(BG, (self.x_pos_bg, self.y_pos_bg))
         self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
-        
         if self.x_pos_bg <= -image_width:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
