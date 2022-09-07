@@ -85,19 +85,3 @@ class Dinosaur(Sprite):
 
         if self.step_index >= 10:
             self.step_index = 0
-
-        list_running = [0, 1]
-
-        for i in list_running:
-            if  self.step_index < 39:
-                print(i)
-                sleep(0.05)
-                self.image = RUNNING[i]
-                self.dino_rect = self.image.get_rect()
-                self.dino_rect.x = self.X_POS
-                self.dino_rect.y = self.Y_POS
-                self.step_index += 1
-
-    def update(self):
-        self.run()
-
