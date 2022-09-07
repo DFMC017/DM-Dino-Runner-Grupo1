@@ -1,5 +1,7 @@
 from components.cactus import Cactus
+from components.bird import Bird
 from utils.constants import LARGE_CACTUS, SMALL_CACTUS
+from utils.constants import BIRD
 
 class ObstacleManager():
     def __init__(self):
@@ -7,8 +9,8 @@ class ObstacleManager():
 
     def update(self):
         if len(self.obstacles) == 0:
-            self.obstacles.append(Cactus(SMALL_CACTUS))
-            self.obstacles.append(Cactus(LARGE_CACTUS))
+            self.obstacles.append(Bird(BIRD))
+            self.obstacles.append(Cactus(SMALL_CACTUS)) or self.obstacles.append(Cactus(LARGE_CACTUS))
         for obstacle in self.obstacles:
             obstacle.update(15, self.obstacles)
 
