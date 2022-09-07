@@ -2,9 +2,9 @@ import pygame
 import os
 
 # Global Constants
-TITLE = "My little DINO :3"
-SCREEN_HEIGHT = 800
-SCREEN_WIDTH = 1600
+TITLE = "Chrome Dino Runner"
+SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1100
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 
@@ -70,3 +70,4 @@ BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 DEFAULT_TYPE = "default"
+SHIELD_TYPE = "shield"
