@@ -1,6 +1,5 @@
 from pygame.sprite import Sprite
 from utils.constants import RUNNING
-from time import sleep
 
 class Dinosaur(Sprite):
     X_POS = 80
