@@ -3,8 +3,8 @@ import os
 
 # Global Constants
 TITLE = "My Little Dino :3"
-SCREEN_HEIGHT = 700
-SCREEN_WIDTH = 1400
+SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1100
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 

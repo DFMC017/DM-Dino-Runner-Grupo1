@@ -18,6 +18,13 @@ class Game:
         self.dinosaur = Dinosaur()
         self.obstacle_manager = ObstacleManager()
         self.points = 0
+        self.working = True
+
+    def execute(self):
+        while self.working:
+            if not self.playing:
+                self.show_menu()
+
 
     def run(self):
         # Game loop: events - update - draw
@@ -32,6 +39,7 @@ class Game:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.playing = False
+                self.working = False
 
     def update(self):
         user_input = pygame.key.get_pressed()
@@ -63,3 +71,34 @@ class Game:
             self.game_speed += 1
         text, text_rect = texts_file.get_score_element(self.points)
         self.screen.blit(text, text_rect)
+
+    def show_menu(self):
+        self.working = True
+        FONT_COLOR_WHITE = (255, 255, 255)
+        self.screen.fill(FONT_COLOR_WHITE)
+        self.show_menu_options()
+        pygame.display.update()
+        self.hand_event_menu()
+
+    def show_menu_options(self):
+        half_screen_height = SCREEN_HEIGHT // 2
+        half_screen_width = SCREEN_WIDTH // 2
+
+        text, text_rect = texts_file.get_text_element('PRESIONA CUALQUIER TECLA PARA COMENZAR', half_screen_width, half_screen_height)
+        self.screen.blit(text, text_rect)
+
+    def hand_event_menu(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.playing = False
+                self.working = False
+                pygame.display.quit()
+                pygame.quit()
+            if event.type == pygame.KEYDOWN:
+                self.run()
+
+
+
+
+
+
