@@ -11,6 +11,7 @@ from utils.constants import (
     SHIELD_TYPE
 )
 class Dinosaur(Sprite):
+    
     X_POS = 50
     Y_POS = 300
     DUCK_POS = 340
@@ -59,7 +60,6 @@ class Dinosaur(Sprite):
             self.jump_vel = self.JUMP_VEL
 
     def update(self, user_input):
-        
         if self.dino_jump:
             self.jump()
         if self.dino_duck:

@@ -5,6 +5,7 @@ from components.obstacle_manager import ObstacleManager
 from utils import texts_file
 
 class Game:
+    
     def __init__(self):
         pygame.init()
         pygame.display.set_caption(TITLE)
@@ -27,13 +28,12 @@ class Game:
 
 
     def run(self):
-        # Game loop: events - update - draw
         self.playing = True
         while self.playing:
             self.events()
             self.update()
             self.draw()
-        pygame.quit()
+        #pygame.quit()
 
     def events(self):
         for event in pygame.event.get():
@@ -69,16 +69,18 @@ class Game:
         self.points += 1
         if self.points % 100 == 0:
             self.game_speed += 1
+
         text, text_rect = texts_file.get_score_element(self.points)
         self.screen.blit(text, text_rect)
 
     def show_menu(self):
-        self.working = True
         FONT_COLOR_WHITE = (255, 255, 255)
+
+        self.working = True
         self.screen.fill(FONT_COLOR_WHITE)
         self.show_menu_options()
-        pygame.display.update()
         self.hand_event_menu()
+        pygame.display.update()
 
     def show_menu_options(self):
         half_screen_height = SCREEN_HEIGHT // 2
@@ -94,11 +96,7 @@ class Game:
                 self.working = False
                 pygame.display.quit()
                 pygame.quit()
+
             if event.type == pygame.KEYDOWN:
                 self.run()
-
-
-
-
-
-
+                self.obstacle_manager.obstacles.clear()

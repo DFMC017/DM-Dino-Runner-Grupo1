@@ -5,6 +5,7 @@ from utils.constants import LARGE_CACTUS, SMALL_CACTUS
 from utils.constants import BIRD
 
 class ObstacleManager():
+    
     def __init__(self):
         self.obstacles = []
 
