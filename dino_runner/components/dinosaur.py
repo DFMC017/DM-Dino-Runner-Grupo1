@@ -11,10 +11,11 @@ from utils.constants import (
     SHIELD_TYPE
 )
 class Dinosaur(Sprite):
+    
     X_POS = 50
     Y_POS = 300
-    DUCK_POS = 340 #Y_POS_DUCK
-    JUMP_VEL = 8.5
+    DUCK_POS = 340
+    JUMP_VEL = 7
 
     def __init__(self):
         self.duck_img = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD}
@@ -25,7 +26,7 @@ class Dinosaur(Sprite):
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = self.X_POS
         self.dino_rect.y = self.Y_POS
-        self.dino_run = False #TRUE
+        self.dino_run = False
         self.dino_duck = False
         self.dino_jump = False
         self.jump_vel = self.JUMP_VEL
@@ -34,11 +35,7 @@ class Dinosaur(Sprite):
     def draw(self, screen):
         screen.blit(self.image, (self.dino_rect.x, self.dino_rect.y))
 
-    def jump_duck(self, image_dic, pos_y):
-        pass
-  
     def run(self):
-
         self.image = self.run_img[self.type][self.step_index // 5]
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = self.X_POS
@@ -49,14 +46,14 @@ class Dinosaur(Sprite):
         self.image = self.duck_img[self.type][self.step_index // 5]
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = self.X_POS
-        self.dino_rect.y = self.DUCK_POS
+        self.dino_rect.y = self.Y_POS
         self.step_index += 1
-
+      
     def jump(self):
         self.image = self.jump_img[self.type]
         if self.dino_jump:
             self.dino_rect.y -= self.jump_vel * 4
-            self.jump_vel -= 0.8
+            self.jump_vel -= 0.7
         if self.jump_vel < -self.JUMP_VEL:
             self.dino_rect.y = self.Y_POS
             self.dino_jump = False
@@ -70,7 +67,7 @@ class Dinosaur(Sprite):
         if self.dino_run:
             self.run()
 
-        if user_input[pygame.K_CAPSLOCK] and not self.dino_jump:
+        if user_input[pygame.K_LCTRL] and not self.dino_jump:
             self.dino_run = False
             self.dino_duck = True
             self.dino_jump = False
@@ -83,6 +80,5 @@ class Dinosaur(Sprite):
             self.dino_duck = False
             self.dino_jump = False
 
-        if self.step_index >= 10:
+        if self.step_index >= 1:
             self.step_index = 0
-
