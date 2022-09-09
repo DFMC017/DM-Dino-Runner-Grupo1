@@ -31,6 +31,7 @@ class Dinosaur(Sprite):
         self.dino_jump = False
         self.jump_vel = self.JUMP_VEL
         self.step_index = 0
+        self.isShield = False
 
     def draw(self, screen):
         screen.blit(self.image, (self.dino_rect.x, self.dino_rect.y))

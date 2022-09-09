@@ -1,7 +1,8 @@
 import pygame
-from utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
+from utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT
 from components.dinosaur import Dinosaur
 from components.obstacle_manager import ObstacleManager
+from components.power_up_manager import PowerUpManager
 from utils import texts_file
 
 class Game:
@@ -20,20 +21,21 @@ class Game:
         self.obstacle_manager = ObstacleManager()
         self.points = 0
         self.working = True
+        self.dinosaur_shield = False
+        self.power_up_manager = PowerUpManager()
 
     def execute(self):
         while self.working:
             if not self.playing:
                 self.show_menu()
 
-
     def run(self):
+        self.reset_components()
         self.playing = True
         while self.playing:
             self.events()
             self.update()
             self.draw()
-        #pygame.quit()
 
     def events(self):
         for event in pygame.event.get():
@@ -45,6 +47,7 @@ class Game:
         user_input = pygame.key.get_pressed()
         self.dinosaur.update(user_input)
         self.obstacle_manager.update(self)
+        self.power_up_manager.update(self)
 
     def draw(self):
         self.clock.tick(FPS)
@@ -53,6 +56,7 @@ class Game:
         self.dinosaur.draw(self.screen)
         self.show_score()
         self.obstacle_manager.draw(self.screen)
+        self.power_up_manager.draw(self.screen)
         pygame.display.update()
         pygame.display.flip()
         
@@ -83,10 +87,7 @@ class Game:
         pygame.display.update()
 
     def show_menu_options(self):
-        half_screen_height = SCREEN_HEIGHT // 2
-        half_screen_width = SCREEN_WIDTH // 2
-
-        text, text_rect = texts_file.get_text_element('PRESIONA CUALQUIER TECLA PARA COMENZAR', half_screen_width, half_screen_height)
+        text, text_rect = texts_file.get_text_element('PRESIONA CUALQUIER TECLA PARA COMENZAR', HALF_SCREEN_WIDTH, HALF_SCREEN_HEIGHT)
         self.screen.blit(text, text_rect)
 
     def hand_event_menu(self):
@@ -98,5 +99,13 @@ class Game:
                 pygame.quit()
 
             if event.type == pygame.KEYDOWN:
+                pygame.mixer.music.load('C:\\Users\\dougl\\Downloads\\PRTDC.mp3')
+                pygame.mixer.music.play(-1)
+                pygame.mixer.music.play(0)
                 self.run()
                 self.obstacle_manager.obstacles.clear()
+
+    def reset_components(self):
+        self.obstacle_manager.reset_obstacles()
+        self.power_up_manager.reset_power_ups()
+        self.points = 0

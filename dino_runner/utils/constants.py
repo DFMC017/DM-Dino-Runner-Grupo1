@@ -4,6 +4,8 @@ import os
 TITLE = "My Little Dino :3"
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
+HALF_SCREEN_HEIGHT = SCREEN_HEIGHT // 2
+HALF_SCREEN_WIDTH = SCREEN_WIDTH // 2
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
