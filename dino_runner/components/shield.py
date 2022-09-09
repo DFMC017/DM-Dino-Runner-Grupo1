@@ -4,5 +4,5 @@ from utils.constants import SHIELD, SHIELD_TYPE
 class Shield(PowerUp):
     def __init__(self):
         self.image = SHIELD
-        super(Shield, self).__init__(self.image)
+        super(Shield, self).__init__(self.image, SHIELD_TYPE)
 

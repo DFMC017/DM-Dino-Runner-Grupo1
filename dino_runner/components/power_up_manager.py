@@ -21,6 +21,7 @@ class PowerUpManager:
                 game.dinosaur.shield_time_up = power_up.star_time + (time_random * 1000)
                 game.dinosaur_shield = True
                 self.power_ups.remove(power_up)
+                game.dinosaur_shield = False
 
     def generate_power_ups(self):
         if len(self.power_ups) == 0:

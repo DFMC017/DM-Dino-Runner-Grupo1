@@ -4,7 +4,7 @@ from utils.constants import HALF_SCREEN_HEIGHT, HALF_SCREEN_WIDTH, SCREEN_HEIGHT
 
 class PowerUp(Sprite):
 
-    def __init__(self, image):
+    def __init__(self, image, type):
         self.image = image
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(HALF_SCREEN_WIDTH, SCREEN_WIDTH) - 100
